@@ -5,6 +5,7 @@
 #include "cmdProcessor/include/CmdProcessor.hpp"
 #include "HMI/include/HMI.hpp"
 
+
 int main()
 {
 	auto controlPanel = 
