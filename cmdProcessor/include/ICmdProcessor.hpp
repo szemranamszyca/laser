@@ -10,12 +10,18 @@ namespace laser
 namespace cmdProcessor
 {
 
+struct Params
+{
+	std::optional<int> inParam;
+	std::optional<int> outParam;
+};
+
 class ICmdProcessor
 {
 public:
-	virtual std::string process(const std::string&) const = 0;
+	virtual std::string process(const std::string&) = 0;
 	virtual void configure(
-		std::shared_ptr<std::map<std::string, std::function<bool()>>>) = 0;
+		std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>>) = 0;
 	virtual ~ICmdProcessor(){};
 };
 

@@ -24,8 +24,8 @@ namespace controlPanel
 // 	SillyModeOFF 
 // };
 
-
-using ActionFunctionMap_t = std::map<std::string, std::function<bool()>>;
+using Func_t = std::function<bool(laser::cmdProcessor::Params&)>;
+using ActionFunctionMap_t = std::map<std::string, Func_t>;
 
 class ControlPanel : public IControlPanel
 {
@@ -39,12 +39,12 @@ public:
 	void start() const override;
 
 private:
+	void addActionFunc(const std::string&, const Func_t& func);
 	uint8_t laserPower_;
 	bool emissionStatus_ = true;
 
 	std::unique_ptr<laser::HMI::IHMI> hmi_;
 	std::unique_ptr<laser::cmdProcessor::ICmdProcessor> cmdProcessor_;
-
 	std::shared_ptr<ActionFunctionMap_t> actionFuncMap_;
 
 };

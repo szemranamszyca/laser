@@ -18,41 +18,56 @@ CmdProcessor::~CmdProcessor()
 
 
 void CmdProcessor::configure(
-	std::shared_ptr<std::map<std::string, std::function<bool()>>> actionFuncMap)
+	std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>> actionFuncMap)
 {
 	actionFunctionMap_ = actionFuncMap;
 }
 
-std::string CmdProcessor::process(const std::string& input) const
+std::string CmdProcessor::process(const std::string& input)
 {
 	std::cout << "INPUT: " << input << '\n';
 	std::string commandToProcess = input;
 	if (sillyMode_)
 		std::reverse(commandToProcess.begin(), commandToProcess.end());
 
-    std::string extractedCommand = extractCmd(input);
+	//i'm aware that this might be considered as hack 
+	//due to there's no spec that cmd always has 3 Sletters
+    std::string extractedCommand = extractCmd(commandToProcess);
 
-    auto actionIt = commandActionMap_.find(extractedCommand);
-
-    std::string output;
-    if (actionIt == commandActionMap_.end())
-    	output = "UK!";
-    else
+    if (extractedCommand == "ESM")
     {
-    	auto functionIt = actionFunctionMap_->find(actionIt->second);
-    	if (functionIt == actionFunctionMap_->end())
-    	{
-  			output = "no function!";
-    	}
-    	else
-    	{    	
-    		output += (functionIt->second() ? "1" : "0");
-    	}
+        sillyMode_ = true;
+        return "ESM#";
+    }
+    if (extractedCommand == "DSM")
+    {
+        sillyMode_ = false;
+        return "DSM#";
     }
 
+    auto actionIt = commandActionMap_.find(extractedCommand);
+    if (actionIt == commandActionMap_.end())
+    	return "UK!";
 
-	output += "#";
-	return output;
+	auto functionIt = actionFunctionMap_->find(actionIt->second);
+	if (functionIt == actionFunctionMap_->end())
+	{
+			return "No defined action for command " + extractedCommand +
+            " shouldn't happend!";
+	}
+ 	
+    Params params;
+   // if (extractedCommand == "")
+    bool success = functionIt->second(params);
+    
+    if (params.outParam)
+    {
+        extractedCommand += "|" + std::to_string(*params.outParam);
+    }
+
+	extractedCommand += (success ? '#' : '!');
+
+	return extractedCommand;
 }
 
 std::string CmdProcessor::extractCmd(const std::string& inputCmd) const

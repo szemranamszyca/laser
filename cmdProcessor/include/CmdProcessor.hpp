@@ -3,10 +3,9 @@
 
 #include <string>
 #include <memory>
-#include "ICmdProcessor.hpp"
+#include <optional>
 
-// not pretty include
-#include "../../controlPanel/include/ControlPanel.hpp"
+#include "ICmdProcessor.hpp"
 
 namespace laser
 {
@@ -18,13 +17,24 @@ class CmdProcessor : public ICmdProcessor
 public:
 	CmdProcessor();
 	virtual ~CmdProcessor();
-	std::string process(const std::string&) const override;
-	void configure(std::shared_ptr<std::map<std::string, std::function<bool()>>>) override;
+	std::string process(const std::string&);
+	void configure(std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>>) override;
 
 
 private:
-	std::map<std::string, std::string> commandActionMap_ = {{"ST?", "GetStatus"}};
-	std::shared_ptr<const std::map<std::string, std::function<bool()>>> actionFunctionMap_;
+	std::map<std::string, std::string> commandActionMap_ = 
+	{
+		{"STR", "StartEmission"},
+		{"STP", "StopEmission"},
+		{"ST?", "GetStatus"},
+		{"KAL", "KeepAlive"},
+		{"PW?", "GetPower"},
+		{"PW=", "SetPower"},
+		{"ESM", "SillyModeOn"},
+		{"DSM", "SillyModeOff"}
+	};
+
+	std::shared_ptr<const std::map<std::string, std::function<bool(Params&)>>> actionFunctionMap_;
 	bool sillyMode_;
 	std::string extractCmd(const std::string&) const;
 };

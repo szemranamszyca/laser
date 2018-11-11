@@ -17,17 +17,35 @@ ControlPanel::ControlPanel(
 	cmdProcessor_(move(cmdProcessor))
 {
 	actionFuncMap_ = std::make_shared<ActionFunctionMap_t>();
-	actionFuncMap_->insert
-	(
-		std::make_pair
-		(
-			"GetStatus", 
-			[this]() -> bool
-			{
-				return emissionStatus_;
-			}
-		)
+	addActionFunc("GetStatus",  
+		[this](laser::cmdProcessor::Params& params) -> bool
+		{
+			params.outParam = emissionStatus_ ? 1 : 0;
+			return true;
+		}
+	);
 
+	addActionFunc("StartEmission",  
+		[this](laser::cmdProcessor::Params& params) -> bool
+		{
+			emissionStatus_ = true;
+			return true;
+		}	
+	);
+
+	addActionFunc("StopEmission",  
+		[this](laser::cmdProcessor::Params& params) -> bool
+		{
+			if (!emissionStatus_)
+			{
+				return false;
+			}
+			else
+			{
+				emissionStatus_ = false;
+				return true;
+			}	
+		}
 	);
 
 	std::cout << "ControlPanel created!\n";
@@ -51,6 +69,12 @@ void ControlPanel::start() const
 {
 	std::cout << "LASER START!" << '\n';
 	hmi_->interact();
+}
+
+
+void ControlPanel::addActionFunc(const std::string& action, const Func_t& func)
+{
+	actionFuncMap_->insert(std::make_pair(action, func));
 }
 
 } // namespace controlPanel
