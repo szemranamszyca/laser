@@ -31,7 +31,7 @@ std::string CmdProcessor::process(const std::string& input)
 		std::reverse(commandToProcess.begin(), commandToProcess.end());
 
 	//i'm aware that this might be considered as hack 
-	//due to there's no spec that cmd always has 3 Sletters
+	//due to there's no spec that cmd always has 3 letters
     std::string extractedCommand = extractCmd(commandToProcess);
 
     if (extractedCommand == "ESM")
@@ -57,7 +57,12 @@ std::string CmdProcessor::process(const std::string& input)
 	}
  	
     Params params;
-   // if (extractedCommand == "")
+    if (extractedCommand == "PW=")
+    {
+        auto extractedParam = extractParameter(commandToProcess);
+        params.inParam = extractedParam;
+    }
+
     bool success = functionIt->second(params);
     
     if (params.outParam)
@@ -73,6 +78,11 @@ std::string CmdProcessor::process(const std::string& input)
 std::string CmdProcessor::extractCmd(const std::string& inputCmd) const
 {
 	return inputCmd.substr(0, 3);
+}
+
+int CmdProcessor::extractParameter(const std::string& inputCmd) const
+{
+    return std::stoi(inputCmd.substr(4, inputCmd.size()-1));
 }
 
 } // namespace cmdProcessor

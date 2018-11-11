@@ -17,6 +17,7 @@ ControlPanel::ControlPanel(
 	cmdProcessor_(move(cmdProcessor))
 {
 	actionFuncMap_ = std::make_shared<ActionFunctionMap_t>();
+
 	addActionFunc("GetStatus",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
@@ -47,6 +48,38 @@ ControlPanel::ControlPanel(
 			}	
 		}
 	);
+
+	addActionFunc("SetPower",  
+		[this](laser::cmdProcessor::Params& params) -> bool
+		{
+			if (!emissionStatus_)
+			{
+				return false;
+			}
+			else
+			{
+				laserPower_ = *params.inParam;
+				return true;
+			}	
+		}
+	);
+
+	addActionFunc("GetPower",  
+		[this](laser::cmdProcessor::Params& params) -> bool
+		{
+			if (!emissionStatus_)
+			{
+				params.outParam = 0;
+				return true;
+			}
+			else
+			{
+				params.outParam = laserPower_;
+				return true;
+			}	
+		}
+	);
+
 
 	std::cout << "ControlPanel created!\n";
 
