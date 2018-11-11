@@ -1,6 +1,8 @@
 # Laser - code assignment
 Command to compile project:
+
 g++ -std=c++17 -o laser src/Laser.cpp controlPanel/src/ControlPanel.cpp cmdProcessor/src/CmdProcessor.cpp HMI/src/HMI.cpp main.cpp
+
 Compiled on g++ (GCC) 8.2.1 20180831
 
 Main class, Laser owns 3. main components:
