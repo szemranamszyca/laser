@@ -82,6 +82,7 @@ std::string CmdProcessor::extractCmd(const std::string& inputCmd) const
 
 int CmdProcessor::extractParameter(const std::string& inputCmd) const
 {
+    // check if inputCmd is in correct syntax should be added
     return std::stoi(inputCmd.substr(4, inputCmd.size()-1));
 }
 

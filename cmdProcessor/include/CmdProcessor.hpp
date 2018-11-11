@@ -16,7 +16,9 @@ class CmdProcessor : public ICmdProcessor
 {
 public:
 	CmdProcessor();
+	CmdProcessor(const CmdProcessor&) = delete;
 	virtual ~CmdProcessor();
+
 	std::string process(const std::string&);
 	void configure(std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>>) override;
 

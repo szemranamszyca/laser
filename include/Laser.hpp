@@ -13,6 +13,7 @@ class Laser : public ILaser
 {
 	public:
 		Laser(std::unique_ptr<controlPanel::IControlPanel>);
+		Laser(const Laser&) = delete;
 		~Laser();
 		void on() const override;
 
