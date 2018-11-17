@@ -43,5 +43,5 @@ private:
 } // namespace laser
 } // namespace cmdProcessor
 
-
 #endif /* CMDPROCESSOR_H */
+

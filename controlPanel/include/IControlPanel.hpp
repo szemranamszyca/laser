@@ -19,3 +19,4 @@ public:
 } // namespace controlPanel
 
 #endif /* ICONTROLPANEL_H */
+

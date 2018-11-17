@@ -24,3 +24,4 @@ class Laser : public ILaser
 
 
 #endif /* LASER_H */
+

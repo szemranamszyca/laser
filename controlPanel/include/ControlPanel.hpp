@@ -4,8 +4,8 @@
 #include <memory>
 #include <map>
 #include "IControlPanel.hpp"
-#include "../../HMI/include/HMI.hpp"
-#include "../../cmdProcessor/include/CmdProcessor.hpp"
+#include "../../HMI/include/IHMI.hpp"
+#include "../../cmdProcessor/include/ICmdProcessor.hpp"
 
 namespace laser
 {
@@ -54,3 +54,4 @@ private:
 
 
 #endif /* CONTROLPANEL_H */
+

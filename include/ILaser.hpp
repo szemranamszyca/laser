@@ -1,4 +1,4 @@
-#ifndef ILASER_H
+#ifndef ILASER_
 #define ILASER_H
 
 namespace laser
@@ -14,3 +14,4 @@ public:
 } // namespace laser
 
 #endif /* ILASER_H */
+
