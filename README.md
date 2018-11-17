@@ -1,10 +1,10 @@
-# Laser - code assignment
+# Simple Laser Emulator
 Command to compile project:
 
-mkdir build
-cd build
-cmake ..
-make
+* mkdir build
+* cd build
+* cmake ..
+* make
 
 
 Compiled on g++ (GCC) 8.2.1 20180831
