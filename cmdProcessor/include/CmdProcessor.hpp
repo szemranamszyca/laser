@@ -18,7 +18,7 @@ public:
 	CmdProcessor();
 	virtual ~CmdProcessor();
 	std::string process(const std::string&);
-	void configure(std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>>) override;
+	void configure(std::shared_ptr<ActionFunctionMap_t>) override;
 
 
 private:

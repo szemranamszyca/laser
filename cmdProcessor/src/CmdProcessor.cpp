@@ -18,7 +18,7 @@ CmdProcessor::~CmdProcessor()
 
 
 void CmdProcessor::configure(
-	std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>> actionFuncMap)
+	std::shared_ptr<ActionFunctionMap_t> actionFuncMap)
 {
 	actionFunctionMap_ = actionFuncMap;
 }

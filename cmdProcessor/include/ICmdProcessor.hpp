@@ -16,12 +16,17 @@ struct Params
 	std::optional<int> outParam;
 };
 
+
+using Func_t = std::function<bool(Params&)>;
+using ActionFunctionMap_t = std::map<std::string, Func_t>;
+
+
 class ICmdProcessor
 {
 public:
 	virtual std::string process(const std::string&) = 0;
 	virtual void configure(
-		std::shared_ptr<std::map<std::string, std::function<bool(Params&)>>>) = 0;
+		std::shared_ptr<ActionFunctionMap_t>) = 0;
 	virtual ~ICmdProcessor(){};
 };
 

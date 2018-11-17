@@ -16,7 +16,7 @@ ControlPanel::ControlPanel(
 	hmi_(move(hmi)),
 	cmdProcessor_(move(cmdProcessor))
 {
-	actionFuncMap_ = std::make_shared<ActionFunctionMap_t>();
+	actionFuncMap_ = std::make_shared<laser::cmdProcessor::ActionFunctionMap_t>();
 
 	addActionFunc("GetStatus",  
 		[this](laser::cmdProcessor::Params& params) -> bool
@@ -105,7 +105,7 @@ void ControlPanel::start() const
 }
 
 
-void ControlPanel::addActionFunc(const std::string& action, const Func_t& func)
+void ControlPanel::addActionFunc(const std::string& action, const laser::cmdProcessor::Func_t& func)
 {
 	actionFuncMap_->insert(std::make_pair(action, func));
 }
