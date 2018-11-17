@@ -33,7 +33,6 @@ public:
 	ControlPanel(
 		std::unique_ptr<laser::HMI::IHMI>,
 		std::unique_ptr<laser::cmdProcessor::ICmdProcessor>);
-	ControlPanel(const ControlPanel&) = delete;
 	virtual ~ControlPanel();
 
 	void configure() const override;

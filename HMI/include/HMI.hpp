@@ -15,9 +15,7 @@ class HMI : public IHMI
 {
 public:
 	HMI();
-	HMI(const HMI&) = delete;
 	virtual ~HMI();
-
 
 	void plugProcessor(processorFunction) override;
 	void interact() const override;
