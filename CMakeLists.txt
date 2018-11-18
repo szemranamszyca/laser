@@ -39,6 +39,8 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
+enable_testing()
+add_subdirectory(test)
 
 add_subdirectory(HMI/src)
 add_subdirectory(cmdProcessor/src)
