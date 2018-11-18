@@ -6,7 +6,8 @@ Command to compile project:
 * mkdir build
 * cd build
 * cmake ..
-* make
+* make all
+* ctest
 
 
 Compiled on g++ (GCC) 8.2.1 20180831
