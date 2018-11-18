@@ -36,8 +36,7 @@ private:
 
 	std::shared_ptr<const std::map<std::string, std::function<bool(Params&)>>> actionFunctionMap_;
 	bool sillyMode_;
-	std::string extractCmd(const std::string&) const;
-	int extractParameter(const std::string&) const;
+	std::vector<std::string> splitCmd(const std::string&) const;
 };
 
 } // namespace laser

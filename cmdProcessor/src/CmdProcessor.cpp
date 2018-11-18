@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 
 #include "../include/CmdProcessor.hpp"
 
@@ -30,9 +31,8 @@ std::string CmdProcessor::process(const std::string& input)
 	if (sillyMode_)
 		std::reverse(commandToProcess.begin(), commandToProcess.end());
 
-	//i'm aware that this might be considered as hack 
-	//due to there's no spec that cmd always has 3 letters
-    std::string extractedCommand = extractCmd(commandToProcess);
+    auto cmdTokens = splitCmd(commandToProcess);
+    auto extractedCommand = cmdTokens[0];
 
     if (extractedCommand == "ESM")
     {
@@ -61,8 +61,7 @@ std::string CmdProcessor::process(const std::string& input)
     Params params;
     if (extractedCommand == "PW=")
     {
-        auto extractedParam = extractParameter(commandToProcess);
-        params.inParam = extractedParam;
+        params.inParam = std::stoi(cmdTokens[1]);
     }
 
     bool success = functionIt->second(params);
@@ -77,16 +76,18 @@ std::string CmdProcessor::process(const std::string& input)
 	return extractedCommand;
 }
 
-std::string CmdProcessor::extractCmd(const std::string& inputCmd) const
+std::vector<std::string> CmdProcessor::splitCmd(const std::string& inputCmd) const
 {
-	return inputCmd.substr(0, 3);
-}
+    std::stringstream command(inputCmd);
+    std::vector<std::string> tokens;
+    std::string tmpToken;
 
-int CmdProcessor::extractParameter(const std::string& inputCmd) const
-{
-    return std::stoi(inputCmd.substr(4, inputCmd.size()-1));
+    while(getline(command, tmpToken, '|')) 
+    { 
+        tokens.push_back(tmpToken); 
+    }
+    return tokens;
 }
 
 } // namespace cmdProcessor
 } // namespace laser
-
