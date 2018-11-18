@@ -47,7 +47,9 @@ std::string CmdProcessor::process(const std::string& input)
 
     auto actionIt = commandActionMap_.find(extractedCommand);
     if (actionIt == commandActionMap_.end())
+    {
     	return "UK!";
+    }
 
 	auto functionIt = actionFunctionMap_->find(actionIt->second);
 	if (functionIt == actionFunctionMap_->end())

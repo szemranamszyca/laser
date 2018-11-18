@@ -58,7 +58,7 @@ ControlPanel::ControlPanel(
 			}
 			else
 			{
-				laserPower_ = *params.inParam;
+				laserPower_ = static_cast<uint8_t>(*params.inParam);
 				return true;
 			}	
 		}
