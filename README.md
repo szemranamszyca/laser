@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/szemranamszyca/laser.svg?branch=master)](https://github.com/szemranamszyca/laser)
+
 # Simple Laser Emulator
 Command to compile project:
 
