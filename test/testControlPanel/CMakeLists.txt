@@ -2,7 +2,7 @@ add_executable(testControlPanel main.cpp TestControlPanel.cpp)
 
 target_link_libraries(
     testControlPanel
-    #ControlPanel
+    ControlPanel
     libgtest
     libgmock
 )
