@@ -104,7 +104,6 @@ void ControlPanel::start() const
 	hmi_->interact();
 }
 
-
 void ControlPanel::addActionReaction(const std::string& action, 
 	const laser::cmdProcessor::Reaction_t& reaction)
 {

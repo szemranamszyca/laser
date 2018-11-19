@@ -17,7 +17,7 @@ public:
 	HMI();
 	virtual ~HMI();
 
-	void plugProcessor(processorFunction) override;
+	void plugProcessor(const processorFunction&) override;
 	void interact() const override;
 
 private:

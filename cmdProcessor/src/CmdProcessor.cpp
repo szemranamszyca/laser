@@ -26,7 +26,6 @@ void CmdProcessor::configure(
 
 std::string CmdProcessor::process(const std::string& input)
 {
-	// std::cout << "INPUT: " << input << '\n';
 	std::string commandToProcess = input;
 	if (sillyMode_)
 		std::reverse(commandToProcess.begin(), commandToProcess.end());
@@ -54,7 +53,7 @@ std::string CmdProcessor::process(const std::string& input)
 	auto reactionIt = actionReactionMap_->find(actionIt->second);
 	if (reactionIt == actionReactionMap_->end())
 	{
-			return "No defined action for command " + extractedCommand +
+			return "No defined reaction for command " + extractedCommand +
             " shouldn't happend!";
 	}
  	

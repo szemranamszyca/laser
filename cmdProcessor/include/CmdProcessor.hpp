@@ -17,21 +17,19 @@ class CmdProcessor : public ICmdProcessor
 public:
 	CmdProcessor();
 	virtual ~CmdProcessor();
-	std::string process(const std::string&);
+	std::string process(const std::string&) override;
 	void configure(std::shared_ptr<ActionReactionMap_t>) override;
 
 
 private:
-	std::map<std::string, std::string> commandActionMap_ = 
+	const std::map<std::string, std::string> commandActionMap_ = 
 	{
 		{"STR", "StartEmission"},
 		{"STP", "StopEmission"},
 		{"ST?", "GetStatus"},
 		{"KAL", "KeepAlive"},
 		{"PW?", "GetPower"},
-		{"PW=", "SetPower"},
-		{"ESM", "SillyModeOn"},
-		{"DSM", "SillyModeOff"}
+		{"PW=", "SetPower"}
 	};
 
 	std::shared_ptr<const ActionReactionMap_t> actionReactionMap_;

@@ -14,7 +14,7 @@ class IHMI
 {
 public:
 	virtual void interact() const = 0;
-	virtual void plugProcessor(processorFunction) = 0;
+	virtual void plugProcessor(const processorFunction&) = 0;
 	virtual ~IHMI(){};
 };
 
