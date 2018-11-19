@@ -26,12 +26,12 @@ void CmdProcessor::configure(
 
 std::string CmdProcessor::process(const std::string& input)
 {
-	std::cout << "INPUT: " << input << '\n';
+	// std::cout << "INPUT: " << input << '\n';
 	std::string commandToProcess = input;
 	if (sillyMode_)
 		std::reverse(commandToProcess.begin(), commandToProcess.end());
 
-    auto cmdTokens = splitCmd(commandToProcess);
+    auto cmdTokens = tokenizeCmd(commandToProcess);
     auto extractedCommand = cmdTokens[0];
 
     if (extractedCommand == "ESM")
@@ -51,8 +51,8 @@ std::string CmdProcessor::process(const std::string& input)
     	return "UK!";
     }
 
-	auto functionIt = actionReactionMap_->find(actionIt->second);
-	if (functionIt == actionReactionMap_->end())
+	auto reactionIt = actionReactionMap_->find(actionIt->second);
+	if (reactionIt == actionReactionMap_->end())
 	{
 			return "No defined action for command " + extractedCommand +
             " shouldn't happend!";
@@ -64,7 +64,7 @@ std::string CmdProcessor::process(const std::string& input)
         params.inParam = std::stoi(cmdTokens[1]);
     }
 
-    bool success = functionIt->second(params);
+    bool success = reactionIt->second(params);
     
     if (params.outParam)
     {
@@ -76,7 +76,7 @@ std::string CmdProcessor::process(const std::string& input)
 	return extractedCommand;
 }
 
-std::vector<std::string> CmdProcessor::splitCmd(const std::string& inputCmd) const
+std::vector<std::string> CmdProcessor::tokenizeCmd(const std::string& inputCmd) const
 {
     std::stringstream command(inputCmd);
     std::vector<std::string> tokens;

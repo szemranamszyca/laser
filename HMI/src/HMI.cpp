@@ -24,13 +24,14 @@ void HMI::interact() const
 	{
 		std::cin >> input;
 		auto output = cmd_(input);
-		std::cout << "OUTPUT: " << output << '\n'; 
+		// std::cout << "OUTPUT: " << output << '\n';
+		std::cout << output << '\n'; 
 	}
 }
 
 void HMI::plugProcessor(processorFunction procToBePlugged)
 {
-	std::cout << "Pluggin cmd processor\n";
+	std::cout << "Plugging command processor\n";
 	cmd_= [=](std::string cmd) -> std::string
 	{
 		return procToBePlugged(cmd);

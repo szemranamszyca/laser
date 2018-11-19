@@ -36,7 +36,7 @@ private:
 
 	std::shared_ptr<const ActionReactionMap_t> actionReactionMap_;
 	bool sillyMode_;
-	std::vector<std::string> splitCmd(const std::string&) const;
+	std::vector<std::string> tokenizeCmd(const std::string&) const;
 };
 
 } // namespace laser
