@@ -17,8 +17,8 @@ struct Params
 };
 
 
-using Func_t = std::function<bool(Params&)>;
-using ActionFunctionMap_t = std::map<std::string, Func_t>;
+using Reaction_t = std::function<bool(Params&)>;
+using ActionReactionMap_t = std::map<std::string, Reaction_t>;
 
 
 class ICmdProcessor
@@ -26,7 +26,7 @@ class ICmdProcessor
 public:
 	virtual std::string process(const std::string&) = 0;
 	virtual void configure(
-		std::shared_ptr<ActionFunctionMap_t>) = 0;
+		std::shared_ptr<ActionReactionMap_t>) = 0;
 	virtual ~ICmdProcessor(){};
 };
 

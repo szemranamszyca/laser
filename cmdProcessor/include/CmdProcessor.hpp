@@ -18,7 +18,7 @@ public:
 	CmdProcessor();
 	virtual ~CmdProcessor();
 	std::string process(const std::string&);
-	void configure(std::shared_ptr<ActionFunctionMap_t>) override;
+	void configure(std::shared_ptr<ActionReactionMap_t>) override;
 
 
 private:
@@ -34,7 +34,7 @@ private:
 		{"DSM", "SillyModeOff"}
 	};
 
-	std::shared_ptr<const std::map<std::string, std::function<bool(Params&)>>> actionFunctionMap_;
+	std::shared_ptr<const ActionReactionMap_t> actionReactionMap_;
 	bool sillyMode_;
 	std::vector<std::string> splitCmd(const std::string&) const;
 };

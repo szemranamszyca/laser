@@ -19,9 +19,9 @@ CmdProcessor::~CmdProcessor()
 
 
 void CmdProcessor::configure(
-	std::shared_ptr<ActionFunctionMap_t> actionFuncMap)
+	std::shared_ptr<ActionReactionMap_t> actionReactionMap)
 {
-	actionFunctionMap_ = actionFuncMap;
+	actionReactionMap_ = actionReactionMap;
 }
 
 std::string CmdProcessor::process(const std::string& input)
@@ -51,8 +51,8 @@ std::string CmdProcessor::process(const std::string& input)
     	return "UK!";
     }
 
-	auto functionIt = actionFunctionMap_->find(actionIt->second);
-	if (functionIt == actionFunctionMap_->end())
+	auto functionIt = actionReactionMap_->find(actionIt->second);
+	if (functionIt == actionReactionMap_->end())
 	{
 			return "No defined action for command " + extractedCommand +
             " shouldn't happend!";

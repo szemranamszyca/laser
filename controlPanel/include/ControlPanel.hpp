@@ -38,13 +38,13 @@ public:
 	void start() const override;
 
 private:
-	void addActionFunc(const std::string&, const laser::cmdProcessor::Func_t& func);
+	void addActionReaction(const std::string&, const laser::cmdProcessor::Reaction_t&);
 	uint8_t laserPower_;
 	bool emissionStatus_;
 
 	std::unique_ptr<laser::HMI::IHMI> hmi_;
 	std::unique_ptr<laser::cmdProcessor::ICmdProcessor> cmdProcessor_;
-	std::shared_ptr<laser::cmdProcessor::ActionFunctionMap_t> actionFuncMap_;
+	std::shared_ptr<laser::cmdProcessor::ActionReactionMap_t> actionReactionMap_;
 
 };
 

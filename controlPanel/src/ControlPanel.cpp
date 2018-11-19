@@ -16,9 +16,9 @@ ControlPanel::ControlPanel(
 	hmi_(move(hmi)),
 	cmdProcessor_(move(cmdProcessor))
 {
-	actionFuncMap_ = std::make_shared<laser::cmdProcessor::ActionFunctionMap_t>();
+	actionReactionMap_ = std::make_shared<laser::cmdProcessor::ActionReactionMap_t>();
 
-	addActionFunc("GetStatus",  
+	addActionReaction("GetStatus",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
 			params.outParam = emissionStatus_ ? 1 : 0;
@@ -26,7 +26,7 @@ ControlPanel::ControlPanel(
 		}
 	);
 
-	addActionFunc("StartEmission",  
+	addActionReaction("StartEmission",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
 			emissionStatus_ = true;
@@ -34,7 +34,7 @@ ControlPanel::ControlPanel(
 		}	
 	);
 
-	addActionFunc("StopEmission",  
+	addActionReaction("StopEmission",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
 			if (!emissionStatus_)
@@ -49,7 +49,7 @@ ControlPanel::ControlPanel(
 		}
 	);
 
-	addActionFunc("SetPower",  
+	addActionReaction("SetPower",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
 			if (!emissionStatus_)
@@ -64,7 +64,7 @@ ControlPanel::ControlPanel(
 		}
 	);
 
-	addActionFunc("GetPower",  
+	addActionReaction("GetPower",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
 			if (!emissionStatus_)
@@ -95,7 +95,7 @@ void ControlPanel::configure() const
 	hmi_->plugProcessor([=](std::string cmd) -> std::string {
 		return cmdProcessor_->process(cmd);
 	});
-	cmdProcessor_->configure(actionFuncMap_);
+	cmdProcessor_->configure(actionReactionMap_);
 }
 
 void ControlPanel::start() const
@@ -105,9 +105,10 @@ void ControlPanel::start() const
 }
 
 
-void ControlPanel::addActionFunc(const std::string& action, const laser::cmdProcessor::Func_t& func)
+void ControlPanel::addActionReaction(const std::string& action, 
+	const laser::cmdProcessor::Reaction_t& reaction)
 {
-	actionFuncMap_->insert(std::make_pair(action, func));
+	actionReactionMap_->insert(std::make_pair(action, reaction));
 }
 
 } // namespace controlPanel
