@@ -79,10 +79,7 @@ ControlPanel::ControlPanel(
 			}	
 		}
 	);
-
-
 	std::cout << "ControlPanel created!\n";
-
 }
 
 ControlPanel::~ControlPanel()

@@ -44,13 +44,19 @@ std::string CmdProcessor::process(const std::string& input)
         return "DSM#";
     }
 
-    auto actionIt = commandActionMap_.find(extractedCommand);
-    if (actionIt == commandActionMap_.end())
+    auto cmdActionIt = commandActionMap_.find(extractedCommand);
+    if (cmdActionIt == commandActionMap_.end())
     {
     	return "UK!";
     }
 
-	auto reactionIt = actionReactionMap_->find(actionIt->second);
+    auto validator = cmdActionIt->second.first;
+    if (!validator(cmdTokens.size()-1))
+    {
+        return "valid not passed";
+    }
+
+	auto reactionIt = actionReactionMap_->find(cmdActionIt->second.second);
 	if (reactionIt == actionReactionMap_->end())
 	{
 			return "No defined reaction for command " + extractedCommand +
@@ -58,7 +64,7 @@ std::string CmdProcessor::process(const std::string& input)
 	}
  	
     Params params;
-    if (extractedCommand == "PW=")
+    if (extractedCommand == "PW=" && cmdTokens.size() == 2)
     {
         params.inParam = std::stoi(cmdTokens[1]);
     }

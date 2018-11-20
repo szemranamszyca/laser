@@ -16,6 +16,7 @@ struct Params
 	std::optional<int> outParam;
 };
 
+using Validator_t = std::function<bool(size_t)>;
 using Reaction_t = std::function<bool(Params&)>;
 using ActionReactionMap_t = std::map<std::string, Reaction_t>;
 
