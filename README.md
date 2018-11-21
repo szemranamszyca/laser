@@ -18,7 +18,5 @@ Main class, Laser owns 3. main components:
 * ControlPanel - configure above elements and control them.
 
 Things to improve:
-* add functinality to "KAL" command. E.g. trigger function every 5 seconds and set ControlPanel::emissionStatus_ to false;
 * refactor CmdProcessor::process - now it's little messy.
-* simplify CmdProcessor configuring - function-action. Maybe SignalSlot pattern?
 * simplify arguments passing to/from ControlPanel
