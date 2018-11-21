@@ -4,6 +4,7 @@
 #include <memory>
 #include <functional>
 #include <map>
+#include <vector>
 
 namespace laser
 {
