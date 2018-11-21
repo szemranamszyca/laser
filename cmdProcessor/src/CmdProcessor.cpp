@@ -53,14 +53,14 @@ std::string CmdProcessor::process(const std::string& input)
     auto validator = cmdActionIt->second.first;
     if (!validator(cmdTokens.size()-1))
     {
-        return "[Validation not passed!]\n UK!";
+        return "[Validation not passed!]\nUK!";
     }
 
 	auto reactionIt = actionReactionMap_->find(cmdActionIt->second.second);
 	if (reactionIt == actionReactionMap_->end())
 	{
 			return "No defined reaction for command " + extractedCommand +
-            " shouldn't happend!";
+            " shouldn't NEVER happend!";
 	}
  	
     /*INPUT PHASE*/
