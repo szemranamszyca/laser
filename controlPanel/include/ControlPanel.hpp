@@ -3,9 +3,12 @@
 
 #include <memory>
 #include <map>
+#include <chrono>
+#include <future>
 #include "IControlPanel.hpp"
 #include "../../HMI/include/IHMI.hpp"
 #include "../../cmdProcessor/include/ICmdProcessor.hpp"
+
 
 namespace laser
 {
@@ -39,9 +42,11 @@ public:
 
 private:
 	void addActionReaction(const std::string&, const laser::cmdProcessor::Reaction_t&);
-
 	uint8_t laserPower_;
 	bool emissionStatus_;
+	std::chrono::system_clock::time_point lastKalSignal_;
+	std::future<void> timer_;
+
 	std::unique_ptr<laser::HMI::IHMI> hmi_;
 	std::unique_ptr<laser::cmdProcessor::ICmdProcessor> cmdProcessor_;
 	std::shared_ptr<laser::cmdProcessor::ActionReactionMap_t> actionReactionMap_;

@@ -1,6 +1,10 @@
 #include <iostream>
 #include <utility>
 
+
+//TODO: move to another class
+#include <thread>
+
 #include "../include/ControlPanel.hpp"
 
 namespace laser
@@ -30,6 +34,18 @@ ControlPanel::ControlPanel(
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
 			emissionStatus_ = true;
+			lastKalSignal_ = std::chrono::system_clock::now();
+			timer_ = std::async(std::launch::async, [this](){
+				while(1)
+				{
+					std::this_thread::sleep_for(std::chrono::seconds(1));
+					if (std::chrono::system_clock::now() > lastKalSignal_ + std::chrono::seconds(5))
+					{
+						emissionStatus_ = false;
+						return;
+					}
+				}
+			});
 			return true;
 		}	
 	);
