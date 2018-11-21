@@ -49,11 +49,7 @@ add_subdirectory(controlPanel/src)
 ### add pthreads support
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-
 ### end pthreads support
 
-
-
 add_executable(laser src/Laser.cpp ${PROJECT_SOURCE_DIR}/main.cpp)
-
 target_link_libraries(laser HMI CmdProcessor ControlPanel Threads::Threads)

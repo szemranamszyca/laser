@@ -95,6 +95,22 @@ ControlPanel::ControlPanel(
 			}	
 		}
 	);
+
+	addActionReaction("KeepAlive",  
+		[this](laser::cmdProcessor::Params& params) -> bool
+		{
+			if (!emissionStatus_)
+			{
+				return false;
+			}
+			else
+			{
+				lastKalSignal_ = std::chrono::system_clock::now();
+				return true;
+			}	
+		}
+	);
+
 	std::cout << "ControlPanel created!\n";
 }
 
