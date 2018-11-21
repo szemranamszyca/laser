@@ -44,6 +44,8 @@ private:
 	void addActionReaction(const std::string&, const laser::cmdProcessor::Reaction_t&);
 	uint8_t laserPower_;
 	bool emissionStatus_;
+
+	size_t deathMenSwitch;
 	std::chrono::system_clock::time_point lastKalSignal_;
 	std::future<void> timer_;
 

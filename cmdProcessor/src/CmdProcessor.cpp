@@ -53,7 +53,7 @@ std::string CmdProcessor::process(const std::string& input)
     auto validator = cmdActionIt->second.first;
     if (!validator(cmdTokens.size()-1))
     {
-        return "valid not passed";
+        return "[Validation not passed!]\n UK!";
     }
 
 	auto reactionIt = actionReactionMap_->find(cmdActionIt->second.second);
@@ -63,17 +63,22 @@ std::string CmdProcessor::process(const std::string& input)
             " shouldn't happend!";
 	}
  	
+    /*INPUT PHASE*/
     Params params;
     if (extractedCommand == "PW=" && cmdTokens.size() == 2)
     {
-        params.inParam = std::stoi(cmdTokens[1]);
+        params.push_back(std::stoi(cmdTokens[1]));
     }
 
     bool success = reactionIt->second(params);
     
-    if (params.outParam)
+    /*OUTPUT PHASE*/
+    if (params.size() > 0)
     {
-        extractedCommand += "|" + std::to_string(*params.outParam);
+        for (const auto& param : params)
+        {
+            extractedCommand += "|" + std::to_string(param);
+        }
     }
 
 	extractedCommand += (success ? '#' : '!');

@@ -17,6 +17,7 @@ ControlPanel::ControlPanel(
 	std::unique_ptr<laser::cmdProcessor::ICmdProcessor> cmdProcessor) :
 	laserPower_(0),
 	emissionStatus_(false),
+	deathMenSwitch(10),
 	hmi_(move(hmi)),
 	cmdProcessor_(move(cmdProcessor))
 {
@@ -25,7 +26,12 @@ ControlPanel::ControlPanel(
 	addActionReaction("GetStatus",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
-			params.outParam = emissionStatus_ ? 1 : 0;
+			if (params.size() > 0)
+			{
+				//redundant validation... TODO something with that
+				return false;
+			}
+			params.push_back(emissionStatus_ ? 1 : 0);
 			return true;
 		}
 	);
@@ -33,13 +39,20 @@ ControlPanel::ControlPanel(
 	addActionReaction("StartEmission",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
+			if (params.size() > 0)
+			{
+				//redundant validation... TODO something with that
+				return false;
+			}
+
 			emissionStatus_ = true;
 			lastKalSignal_ = std::chrono::system_clock::now();
 			timer_ = std::async(std::launch::async, [this](){
 				while(1)
 				{
 					std::this_thread::sleep_for(std::chrono::seconds(1));
-					if (std::chrono::system_clock::now() > lastKalSignal_ + std::chrono::seconds(5))
+					if (std::chrono::system_clock::now() > lastKalSignal_ 
+						+ std::chrono::seconds(deathMenSwitch))
 					{
 						emissionStatus_ = false;
 						return;
@@ -53,6 +66,12 @@ ControlPanel::ControlPanel(
 	addActionReaction("StopEmission",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
+			if (params.size() > 0)
+			{
+				//redundant validation... TODO something with that
+				return false;
+			}
+
 			if (!emissionStatus_)
 			{
 				return false;
@@ -74,7 +93,7 @@ ControlPanel::ControlPanel(
 			}
 			else
 			{
-				laserPower_ = static_cast<uint8_t>(*params.inParam);
+				laserPower_ = static_cast<uint8_t>(params.front());
 				return true;
 			}	
 		}
@@ -85,12 +104,12 @@ ControlPanel::ControlPanel(
 		{
 			if (!emissionStatus_)
 			{
-				params.outParam = 0;
+				params.push_back(0);
 				return true;
 			}
 			else
 			{
-				params.outParam = laserPower_;
+				params.push_back(laserPower_);
 				return true;
 			}	
 		}
@@ -99,6 +118,12 @@ ControlPanel::ControlPanel(
 	addActionReaction("KeepAlive",  
 		[this](laser::cmdProcessor::Params& params) -> bool
 		{
+			if (params.size() > 0)
+			{
+				//redundant validation... TODO something with that
+				return false;
+			}
+
 			if (!emissionStatus_)
 			{
 				return false;

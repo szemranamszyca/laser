@@ -10,16 +10,10 @@ namespace laser
 namespace cmdProcessor
 {
 
-struct Params
-{
-	std::optional<int> inParam;
-	std::optional<int> outParam;
-};
-
+using Params = std::vector<int>;
 using Validator_t = std::function<bool(size_t)>;
 using Reaction_t = std::function<bool(Params&)>;
 using ActionReactionMap_t = std::map<std::string, Reaction_t>;
-
 
 class ICmdProcessor
 {
