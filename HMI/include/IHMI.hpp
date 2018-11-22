@@ -1,5 +1,5 @@
-#ifndef IHMI_H
-#define IHMI_H
+#ifndef IHMI_HPP
+#define IHMI_HPP
 
 #include <functional>
 
@@ -21,5 +21,4 @@ public:
 } // namespace laser
 } // namespace cmdProcessor
 
-#endif /* IHMI_H */
-
+#endif /* IHMI_HPP */
