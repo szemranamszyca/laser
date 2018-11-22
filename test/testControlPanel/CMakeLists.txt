@@ -1,11 +1,11 @@
-add_executable(testControlPanel main.cpp TestControlPanel.cpp)
+add_executable(TestControlPanel main.cpp TestControlPanel.cpp)
 
 target_link_libraries(
-    testControlPanel
+    TestControlPanel
     ControlPanel
     libgtest
     libgmock
 )
 
-add_test(NAME testControlPanel
-         COMMAND testControlPanel)
+add_test(NAME TestControlPanel
+         COMMAND TestControlPanel)

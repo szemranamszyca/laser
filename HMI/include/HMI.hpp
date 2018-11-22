@@ -8,9 +8,7 @@ namespace laser
 {
 namespace HMI
 {
-
-
-
+    
 class HMI : public IHMI
 {
 public:

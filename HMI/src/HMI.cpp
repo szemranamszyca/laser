@@ -19,7 +19,11 @@ HMI::~HMI()
 void HMI::interact() const
 {
 	std::string input;
-	// TODO: add check if proc is plugged!
+	if (cmd_ == nullptr)
+	{
+		return;
+	}
+	
 	while(1)
 	{
 		std::cin >> input;
@@ -40,4 +44,3 @@ void HMI::plugProcessor(const processorFunction& procToBePlugged)
 
 } // namespace HMI
 } // namespace laser
-
