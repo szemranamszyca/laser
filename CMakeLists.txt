@@ -3,7 +3,13 @@ cmake_minimum_required(VERSION 3.9.1)
 project(laser_emulator)
 
 set(CMAKE_CXX_STANDARD 14)
-add_compile_options(--coverage -O0)
+
+if(CMAKE_COMPILER_IS_GNUCC)
+  option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
+  if(ENABLE_COVERAGE)
+    add_compile_options(--coverage -O0)
+  endif()
+endif()
 
 add_library(project_warnings INTERFACE)
 target_compile_options(project_warnings
@@ -41,7 +47,7 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
-#include_directories("${PROJECT_SOURCE_DIR}")
+include_directories("${PROJECT_SOURCE_DIR}")
 
 ### add pthreads support
 set(THREADS_PREFER_PTHREAD_FLAG ON)
