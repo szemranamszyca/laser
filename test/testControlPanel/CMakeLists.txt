@@ -5,6 +5,7 @@ target_link_libraries(
     ControlPanel
     libgtest
     libgmock
+    project_warnings --coverage
 )
 
 add_test(NAME TestControlPanel

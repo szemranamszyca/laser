@@ -4,18 +4,7 @@ project(laser_emulator)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -fprofile-arcs -ftest-coverage")
-
 add_library(project_warnings INTERFACE)
-
-if(CMAKE_COMPILER_IS_GNUCC)
-  option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
-
-  if(ENABLE_COVERAGE)
-    add_compile_options(--coverage -O0)
-  endif()
-endif()
-
 target_compile_options(project_warnings
     INTERFACE
     -Wall
@@ -51,20 +40,22 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
-include_directories("${PROJECT_SOURCE_DIR}")
+#include_directories("${PROJECT_SOURCE_DIR}")
 
 ### add pthreads support
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 ### end pthreads support
 
-enable_testing()
-add_subdirectory(test)
-
 add_subdirectory(HMI/src)
 add_subdirectory(cmdProcessor/src)
 add_subdirectory(controlPanel/src)
 
-
 add_executable(laser src/Laser.cpp ${PROJECT_SOURCE_DIR}/main.cpp)
-target_link_libraries(laser PRIVATE project_warnings --coverage HMI CmdProcessor ControlPanel Threads::Threads )
+target_link_libraries(
+    laser 
+    PUBLIC HMI CmdProcessor ControlPanel Threads::Threads
+)
+
+enable_testing()
+add_subdirectory(test)
