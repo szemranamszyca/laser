@@ -21,5 +21,11 @@ TEST_F(TestControlPanel, ShouldCallHMIandCmdProcessorWhenConfigureInvoked)
     EXPECT_CALL(*cmdProcessorPtr_, configure(_));
 
     controlPanel_.configure();
-    ASSERT_TRUE(true);
+}
+
+TEST_F(TestControlPanel, ShouldStartHMIInteractWhenStartInvoked) 
+{
+    EXPECT_CALL(*hmiMockPtr_, interact());
+
+    controlPanel_.start();
 }
