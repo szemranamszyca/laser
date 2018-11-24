@@ -15,3 +15,4 @@ script:
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake ..
   - make all
   - ctest
+  - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-5
