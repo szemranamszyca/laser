@@ -1,4 +1,4 @@
-add_executable(TestControlPanel main.cpp TestControlPanel.cpp)
+add_executable(TestControlPanel main.cpp TestControlPanel.cpp)      
 
 target_link_libraries(
     TestControlPanel

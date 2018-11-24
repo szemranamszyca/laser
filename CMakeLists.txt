@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.9.1)
 project(laser_emulator)
 
 set(CMAKE_CXX_STANDARD 14)
+add_compile_options(--coverage -O0)
 
 add_library(project_warnings INTERFACE)
 target_compile_options(project_warnings
@@ -55,6 +56,7 @@ add_executable(laser src/Laser.cpp ${PROJECT_SOURCE_DIR}/main.cpp)
 target_link_libraries(
     laser 
     PUBLIC HMI CmdProcessor ControlPanel Threads::Threads
+    PRIVATE project_warnings --coverage
 )
 
 enable_testing()

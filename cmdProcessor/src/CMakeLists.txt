@@ -2,4 +2,4 @@ cmake_minimum_required(VERSION 3.9.1)
 
 set(LIBRARY_OUTPUT_PATH  ${CMAKE_BINARY_DIR}/lib)
 
-add_library(CmdProcessor SHARED "CmdProcessor.cpp")
+add_library(CmdProcessor STATIC "CmdProcessor.cpp")
