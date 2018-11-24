@@ -1,12 +1,11 @@
 #include <string>
 #include "TestControlPanel.hpp"
 
-using namespace std;
-using ::testing::StrictMock;
+
+using ::testing::_;
 
 TestControlPanel::TestControlPanel() : 
-    controlPanel_(std::make_unique<StrictMock<HMIMock>>(),
-        std::make_unique<StrictMock<CmdProcessorMock>>())
+    controlPanel_(move(hmiMock_), std::move(cmdProcessorMock_))
 {
 }
 
@@ -16,7 +15,10 @@ void TestControlPanel::SetUp() {}
 
 void TestControlPanel::TearDown() {}
 
-TEST_F(TestControlPanel, ShouldCallHMIandCmdProcessorWhenConfigureInvoked) {
+TEST_F(TestControlPanel, ShouldCallHMIandCmdProcessorWhenConfigureInvoked) 
+{
+    EXPECT_CALL(*hmiMockPtr_, plugProcessor(_));
+    EXPECT_CALL(*cmdProcessorPtr_, configure(_));
 
     controlPanel_.configure();
     ASSERT_TRUE(true);
