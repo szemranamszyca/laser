@@ -7,12 +7,12 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-8
+      - g++-7
 
 script:
   - mkdir -p build
   - cd build
-  - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -j2 -D ENABLE_COVERAGE:BOOL=TRUE ..
+  - CXX=/usr/bin/g++-7 CC=/usr/bin/gcc-7 cmake -j2 -D ENABLE_COVERAGE:BOOL=TRUE ..
   - make all
   - ctest -j2
-  - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-8 > /dev/null
+  - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-7
