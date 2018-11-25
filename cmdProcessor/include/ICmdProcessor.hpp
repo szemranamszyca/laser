@@ -6,7 +6,7 @@
 #include <map>
 #include <vector>
 
-namespace laser
+namespace emulator
 {
 namespace cmdProcessor
 {
@@ -25,7 +25,7 @@ public:
 	virtual ~ICmdProcessor(){};
 };
 
-} // namespace laser
+} // namespace emulator
 } // namespace cmdProcessor
 
 #endif /* ICMDPROCESSOR_H */

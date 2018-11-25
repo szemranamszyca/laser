@@ -22,5 +22,5 @@ protected:
     // before the destructor).
     virtual void TearDown();
 
-    laser::HMI::HMI hmi_;
+    emulator::HMI::HMI hmi_;
 };

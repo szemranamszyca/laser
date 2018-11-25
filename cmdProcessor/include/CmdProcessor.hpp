@@ -7,7 +7,7 @@
 
 #include "ICmdProcessor.hpp"
 
-namespace laser
+namespace emulator
 {
 namespace cmdProcessor
 {
@@ -36,7 +36,7 @@ private:
 	std::vector<std::string> tokenizeCmd(const std::string&) const;
 };
 
-} // namespace laser
+} // namespace emulator
 } // namespace cmdProcessor
 
 #endif /* CMDPROCESSOR_H */

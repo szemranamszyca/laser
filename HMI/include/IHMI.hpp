@@ -3,7 +3,7 @@
 
 #include <functional>
 
-namespace laser
+namespace emulator
 {
 namespace HMI
 {
@@ -18,7 +18,7 @@ public:
 	virtual ~IHMI(){};
 };
 
-} // namespace laser
+} // namespace emulator
 } // namespace cmdProcessor
 
 #endif /* IHMI_HPP */

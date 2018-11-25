@@ -6,7 +6,7 @@
 #include "../controlPanel/include/IControlPanel.hpp"
 
 
-namespace laser
+namespace emulator
 {
 
 class Laser : public ILaser
@@ -20,7 +20,7 @@ class Laser : public ILaser
 		std::unique_ptr<controlPanel::IControlPanel> controlPanel_;
 };
 
-} // namespace laser
+} // namespace emulator
 
 
 #endif /* LASER_H */

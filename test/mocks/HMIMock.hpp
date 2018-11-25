@@ -4,7 +4,7 @@
 #include "gmock/gmock.h"
 #include  "../../HMI/include/IHMI.hpp"
 
-using namespace laser::HMI;
+using namespace emulator::HMI;
 
 class HMIMock : public IHMI {
  public:

@@ -7,24 +7,24 @@
 
 #include "../include/ControlPanel.hpp"
 
-namespace laser
+namespace emulator
 {
 namespace controlPanel
 {
 
 ControlPanel::ControlPanel(
-	std::unique_ptr<laser::HMI::IHMI> hmi,
-	std::unique_ptr<laser::cmdProcessor::ICmdProcessor> cmdProcessor) :
+	std::unique_ptr<emulator::HMI::IHMI> hmi,
+	std::unique_ptr<emulator::cmdProcessor::ICmdProcessor> cmdProcessor) :
 	laserPower_(0),
 	emissionStatus_(false),
 	deathMenSwitch(10),
 	hmi_(move(hmi)),
 	cmdProcessor_(move(cmdProcessor))
 {
-	actionReactionMap_ = std::make_shared<laser::cmdProcessor::ActionReactionMap_t>();
+	actionReactionMap_ = std::make_shared<emulator::cmdProcessor::ActionReactionMap_t>();
 
 	addActionReaction("GetStatus",  
-		[this](laser::cmdProcessor::Params& params) -> bool
+		[this](emulator::cmdProcessor::Params& params) -> bool
 		{
 			if (params.size() > 0)
 			{
@@ -37,7 +37,7 @@ ControlPanel::ControlPanel(
 	);
 
 	addActionReaction("StartEmission",  
-		[this](laser::cmdProcessor::Params& params) -> bool
+		[this](emulator::cmdProcessor::Params& params) -> bool
 		{
 			if (params.size() > 0)
 			{
@@ -64,7 +64,7 @@ ControlPanel::ControlPanel(
 	);
 
 	addActionReaction("StopEmission",  
-		[this](laser::cmdProcessor::Params& params) -> bool
+		[this](emulator::cmdProcessor::Params& params) -> bool
 		{
 			if (params.size() > 0)
 			{
@@ -85,7 +85,7 @@ ControlPanel::ControlPanel(
 	);
 
 	addActionReaction("SetPower",  
-		[this](laser::cmdProcessor::Params& params) -> bool
+		[this](emulator::cmdProcessor::Params& params) -> bool
 		{
 			if (!emissionStatus_)
 			{
@@ -100,7 +100,7 @@ ControlPanel::ControlPanel(
 	);
 
 	addActionReaction("GetPower",  
-		[this](laser::cmdProcessor::Params& params) -> bool
+		[this](emulator::cmdProcessor::Params& params) -> bool
 		{
 			if (!emissionStatus_)
 			{
@@ -116,7 +116,7 @@ ControlPanel::ControlPanel(
 	);
 
 	addActionReaction("KeepAlive",  
-		[this](laser::cmdProcessor::Params& params) -> bool
+		[this](emulator::cmdProcessor::Params& params) -> bool
 		{
 			if (params.size() > 0)
 			{
@@ -159,11 +159,11 @@ void ControlPanel::start() const
 }
 
 void ControlPanel::addActionReaction(const std::string& action, 
-	const laser::cmdProcessor::Reaction_t& reaction)
+	const emulator::cmdProcessor::Reaction_t& reaction)
 {
 	actionReactionMap_->insert(std::make_pair(action, reaction));
 }
 
 } // namespace controlPanel
-} // namespace laser
+} // namespace emulator
 

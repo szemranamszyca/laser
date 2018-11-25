@@ -4,7 +4,7 @@
 
 #include "../include/CmdProcessor.hpp"
 
-namespace laser
+namespace emulator
 {
 namespace cmdProcessor
 {
@@ -100,4 +100,4 @@ std::vector<std::string> CmdProcessor::tokenizeCmd(const std::string& inputCmd) 
 }
 
 } // namespace cmdProcessor
-} // namespace laser
+} // namespace emulator

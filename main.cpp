@@ -10,11 +10,11 @@ int main()
 {
 	auto controlPanel = 
 		std::make_unique<
-		laser::controlPanel::ControlPanel>(
-			std::make_unique<laser::HMI::HMI>(),
-			std::make_unique<laser::cmdProcessor::CmdProcessor>());
+		emulator::controlPanel::ControlPanel>(
+			std::make_unique<emulator::HMI::HMI>(),
+			std::make_unique<emulator::cmdProcessor::CmdProcessor>());
 
-	laser::Laser fancyLaser(move(controlPanel));
+	emulator::Laser fancyLaser(move(controlPanel));
 	fancyLaser.on();
 	return 0;
 }

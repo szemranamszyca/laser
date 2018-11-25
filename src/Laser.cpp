@@ -2,7 +2,7 @@
 
 #include "../include/Laser.hpp"
 
-namespace laser
+namespace emulator
 {
 
 Laser::Laser(std::unique_ptr<controlPanel::IControlPanel> controlPanel) :
@@ -20,5 +20,5 @@ void Laser::on() const
 }
 
 
-} // namespace laser
+} // namespace emulator
 

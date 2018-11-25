@@ -3,7 +3,7 @@
 
 #include "../include/HMI.hpp"
 
-namespace laser
+namespace emulator
 {
 namespace HMI
 {
@@ -43,4 +43,4 @@ void HMI::plugProcessor(const processorFunction& procToBePlugged)
 }
 
 } // namespace HMI
-} // namespace laser
+} // namespace emulator

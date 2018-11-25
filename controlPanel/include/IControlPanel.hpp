@@ -1,7 +1,7 @@
 #ifndef ICONTROLPANEL_H
 #define ICONTROLPANEL_H
 
-namespace laser
+namespace emulator
 {
 namespace controlPanel
 {
@@ -15,7 +15,7 @@ public:
 	virtual ~IControlPanel(){};
 };
 
-} // namespace laser
+} // namespace emulator
 } // namespace controlPanel
 
 #endif /* ICONTROLPANEL_H */

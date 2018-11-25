@@ -1,7 +1,7 @@
 #ifndef ILASER_
 #define ILASER_H
 
-namespace laser
+namespace emulator
 {
 
 class ILaser
@@ -11,7 +11,7 @@ public:
 	virtual ~ILaser(){};
 };
 
-} // namespace laser
+} // namespace emulator
 
 #endif /* ILASER_H */
 

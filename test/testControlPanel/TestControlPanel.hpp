@@ -25,7 +25,7 @@ protected:
     HMIMock* hmiMockPtr_ = hmiMock_.get();
     CmdProcessorMock* cmdProcessorPtr_ = cmdProcessorMock_.get();
 
-    laser::controlPanel::ControlPanel controlPanel_;
+    emulator::controlPanel::ControlPanel controlPanel_;
         
         
 };

@@ -4,7 +4,7 @@
 #include <memory>
 #include "IHMI.hpp"
 
-namespace laser
+namespace emulator
 {
 namespace HMI
 {
@@ -22,7 +22,7 @@ private:
 	processorFunction cmd_;
 };
 
-} // namespace laser
+} // namespace emulator
 } // namespace cmdProcessor
 
 
