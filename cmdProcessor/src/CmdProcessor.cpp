@@ -9,7 +9,7 @@ namespace emulator
 namespace cmdProcessor
 {
 
-CmdProcessor::CmdProcessor()
+CmdProcessor::CmdProcessor() : sillyMode_(false)
 {
 	std::cout << "CmdProcessor created!\n";
 }
@@ -50,8 +50,6 @@ std::string CmdProcessor::process(const std::string& input)
         return "DSM#";
     }
 
-    std::cout << "EX cmd " << extractedCommand << '\n';
-    
     auto cmdActionIt = commandActionMap_.find(extractedCommand);
     if (cmdActionIt == commandActionMap_.end())
     {
