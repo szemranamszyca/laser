@@ -42,3 +42,4 @@ include_directories("${source_dir}/googletest/include"
           
 add_subdirectory(testControlPanel)
 add_subdirectory(testHMI)
+add_subdirectory(testCmdProcessor)

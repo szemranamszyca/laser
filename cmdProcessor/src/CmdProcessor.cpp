@@ -26,6 +26,12 @@ void CmdProcessor::configure(
 
 std::string CmdProcessor::process(const std::string& input)
 {
+    if (actionReactionMap_ == nullptr)
+    {
+        std::cout << "CmdProcessor not configured!\n";
+        return "UK!";
+    }
+
 	std::string commandToProcess = input;
 	if (sillyMode_)
 		std::reverse(commandToProcess.begin(), commandToProcess.end());
@@ -53,7 +59,8 @@ std::string CmdProcessor::process(const std::string& input)
     auto validator = cmdActionIt->second.first;
     if (!validator(cmdTokens.size()-1))
     {
-        return "[Validation not passed!]\nUK!";
+        std::cout << "[Validation not passed!]\n";
+        return "UK!";
     }
 
 	auto reactionIt = actionReactionMap_->find(cmdActionIt->second.second);
