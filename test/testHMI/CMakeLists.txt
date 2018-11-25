@@ -5,7 +5,7 @@ target_link_libraries(
     HMI
     libgtest
     libgmock
-    project_warnings --coverage
+    test_warnings --coverage
 )
 
 add_test(NAME TestHMI
