@@ -14,5 +14,5 @@ script:
   - cd build
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -D ENABLE_COVERAGE:BOOL=TRUE ..
   - make all
-  - ctest
+  - ctest --verbose
   - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-8

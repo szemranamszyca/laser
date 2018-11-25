@@ -56,9 +56,9 @@ add_subdirectory(HMI/src)
 add_subdirectory(cmdProcessor/src)
 add_subdirectory(controlPanel/src)
 
-add_executable(laser src/Laser.cpp ${PROJECT_SOURCE_DIR}/main.cpp)
+add_executable(Laser src/Laser.cpp ${PROJECT_SOURCE_DIR}/main.cpp)
 target_link_libraries(
-    laser 
+    Laser 
     PUBLIC HMI CmdProcessor ControlPanel Threads::Threads
     PRIVATE project_warnings --coverage
 )
