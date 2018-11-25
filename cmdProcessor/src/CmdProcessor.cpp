@@ -50,6 +50,8 @@ std::string CmdProcessor::process(const std::string& input)
         return "DSM#";
     }
 
+    std::cout << "EX cmd " << extractedCommand << '\n';
+    
     auto cmdActionIt = commandActionMap_.find(extractedCommand);
     if (cmdActionIt == commandActionMap_.end())
     {
