@@ -32,18 +32,18 @@ TEST_F(TestCmdProcessor, ShouldReturnUKIfCmdIsUnknown)
     ASSERT_EQ("UK!", result);
 }
 
-TEST_F(TestCmdProcessor, DISABLED_ShouldEnterAndExitSillyMode) 
-{
-    cmdProcessor_.configure(actionReactionMapStub_);
-    std::string result = cmdProcessor_.process("ESM");
-    ASSERT_EQ("ESM#", result);
+// TEST_F(TestCmdProcessor, DISABLED_ShouldEnterAndExitSillyMode) 
+// {
+//     cmdProcessor_.configure(actionReactionMapStub_);
+//     std::string result = cmdProcessor_.process("ESM");
+//     ASSERT_EQ("ESM#", result);
 
-    result = cmdProcessor_.process("STR");
-    ASSERT_EQ("UK!", result);
+//     result = cmdProcessor_.process("STR");
+//     ASSERT_EQ("UK!", result);
 
-    result = cmdProcessor_.process("MSD");
-    ASSERT_EQ("DSM#", result);
-}
+//     result = cmdProcessor_.process("MSD");
+//     ASSERT_EQ("DSM#", result);
+// }
 
 TEST_F(TestCmdProcessor, ShouldReturnUKIfValidationNotPassed) 
 {
