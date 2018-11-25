@@ -32,7 +32,7 @@ TEST_F(TestCmdProcessor, ShouldReturnUKIfCmdIsUnknown)
     ASSERT_EQ("UK!", result);
 }
 
-TEST_F(TestCmdProcessor, ShouldEnterAndExitSillyMode) 
+TEST_F(TestCmdProcessor, DISABLED_ShouldEnterAndExitSillyMode) 
 {
     cmdProcessor_.configure(actionReactionMapStub_);
     std::string result = cmdProcessor_.process("ESM");
